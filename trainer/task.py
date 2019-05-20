@@ -4,7 +4,8 @@ from trainer.utils import analyze_result, compute_confusion_matrix
 from trainer.model import create_model
 import pickle
 from os.path import join, pardir
-from constants import TRAIN_DATA_DIR, VALIDATION_DATA_DIR, TRAINED_MODEL_PATH, BATCH_SIZE, IMAGE_SIZE, EPOCHS
+from constants import TRAIN_DATA_DIR, VALIDATION_DATA_DIR, TRAINED_MODEL_PATH, \
+    BATCH_SIZE, IMAGE_SIZE, EPOCHS, IS_ANALYSIS
 
 checkpoint = ModelCheckpoint("../data_files/model/model_weights.h5", monitor='val_acc', verbose=1,
                              save_best_only=True, mode='max')
@@ -54,8 +55,9 @@ def train_model():
     with open(join(pardir, TRAINED_MODEL_PATH), 'wb') as file:
         pickle.dump(model, file)
 
-    analyze_result(history)
-    compute_confusion_matrix(model, validation_generator)
+    if IS_ANALYSIS:
+        analyze_result(history)
+        compute_confusion_matrix(model, validation_generator)
 
 
 train_model()

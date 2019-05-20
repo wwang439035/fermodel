@@ -18,3 +18,5 @@ IMAGE_SIZE = 48
 EMOTIONS_LIST = ["Angry", "Happy", "Sad"]
 NUM_OF_CLASS = len(EMOTIONS_LIST)
 EPOCHS = 10
+
+IS_ANALYSIS = False
