@@ -1,5 +1,5 @@
 from keras.preprocessing.image import load_img, img_to_array
-from constants import EMOTIONS_LIST, TRAINED_MODEL_PATH, IMAGE_SIZE
+from constants.constants_local import EMOTIONS_LIST, TRAINED_MODEL_PATH, IMAGE_SIZE
 import numpy as np
 import pickle
 
@@ -17,9 +17,8 @@ def predict_emotion(face_images, model_file=TRAINED_MODEL_PATH):
 
 
 images = []
-image = load_img('data_files/validation/angry/23.jpg', target_size=(IMAGE_SIZE, IMAGE_SIZE), color_mode='grayscale')
+image = load_img('data_files/face.jpg', target_size=(IMAGE_SIZE, IMAGE_SIZE), color_mode='grayscale')
 image = img_to_array(image)
-print(image)
 image = np.resize(image, (1, 48, 48, 1))
 images.append(image)
 result = predict_emotion(face_images=images)
